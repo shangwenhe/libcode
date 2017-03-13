@@ -7,9 +7,7 @@
     doc = window.document;
     var metaElbefroe = document.querySelector('meta[name="viewport"]');
 
-    if(/\s*1migou\s*/.test(ua)) {
-        metaElbefroe.setAttribute('content', 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no');
-    }
+
 
     dpr = window.devicePixelRatio || 1;
     scale = 1 / dpr;
@@ -21,23 +19,19 @@
     // metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ',initial-scale=' + scale + ',maximum-scale='
     // + scale + ',minimum-scale=' + scale + ',user-scalable=no');
     
-    if (true) {
-        metaEl = doc.createElement('meta');
-        metaEl.setAttribute('name', 'viewport');
-        if (/\s*1migou\s*/.test(ua)) {
-            metaEl.setAttribute('content', 'width=' + dpr * docEl.clientWidth + ', initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');    
-        } else {
-            metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
-        }
+
+    metaEl = doc.createElement('meta');
+    metaEl.setAttribute('name', 'viewport');
+    metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
         
-        if (docEl.firstElementChild) {
-            docEl.firstElementChild.appendChild(metaEl);
-        } else {
-            var wrap = doc.createElement('div');
-            wrap.appendChild(metaEl);
-            doc.write(wrap.innerHTML);
-        }
+    if (docEl.firstElementChild) {
+        docEl.firstElementChild.appendChild(metaEl);
+    } else {
+        var wrap = doc.createElement('div');
+        wrap.appendChild(metaEl);
+        doc.write(wrap.innerHTML);
     }
+   
 
     document.head.removeChild(metaElbefroe);
 
